@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+.required {
+    color: red;
+}
+
+.link {
+    color: rgba(0, 123, 175, 1);
+    cursor: pointer;
+}
+
