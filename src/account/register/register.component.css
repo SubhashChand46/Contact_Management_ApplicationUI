@@ -19,8 +19,8 @@ body {
 
 .box {
     position: relative;
-    width: 380px;
-    height: 450px;
+    width: 420px;
+    height: 550px;
     background: #1c1c1c;
     border-radius: 8px;
     overflow: hidden;
@@ -32,8 +32,8 @@ body {
     position: absolute;
     top: -50%;
     left: -50%;
-    width: 380px;
-    height: 420px;
+    width: 420px;
+    height: 550px;
     background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
     z-index: 1;
     transform-origin: bottom right;
@@ -45,8 +45,8 @@ body {
     position: absolute;
     top: -50%;
     left: -50%;
-    width: 380px;
-    height: 420px;
+    width: 420px;
+    height: 550px;
     background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
     z-index: 1;
     transform-origin: bottom right;
@@ -166,7 +166,7 @@ body {
 
 .box form .inputBox input:valid~i,
 .box form .inputBox input:focus~i {
-    height: 44px;
+    height: 54px;
 }
 
 .box form .links {

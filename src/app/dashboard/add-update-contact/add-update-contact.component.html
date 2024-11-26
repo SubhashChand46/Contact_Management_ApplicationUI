@@ -5,7 +5,8 @@
                 <div class="form-group mb-3">
                     <label for="firstName">First Name<span class="required">*</span></label>
                     <input type="text" id="firstName" formControlName="firstName" class="form-control"
-                        placeholder="Enter first name" />
+                        placeholder="Enter first name"
+                        [ngClass]="{'k-required':contactForm.get('firstName')?.invalid && isSubmit}" />
                     <div *ngIf="contactForm.get('firstName')?.touched && contactForm.get('firstName')?.invalid && isSubmit"
                         class="text-danger">
                         First Name is required.
@@ -16,7 +17,7 @@
                 <div class="form-group mb-3">
                     <label for="lastName">Last Name<span class="required">*</span></label>
                     <input type="text" id="lastName" formControlName="lastName" class="form-control"
-                        placeholder="Enter last name" />
+                        placeholder="Enter last name" [ngClass]="{'k-required':contactForm.get('lastName')?.invalid && isSubmit}"/>
                     <div *ngIf="contactForm.get('lastName')?.touched && contactForm.get('lastName')?.invalid && isSubmit"
                         class="text-danger">
                         Last Name is required.
@@ -27,7 +28,8 @@
                 <div class="form-group mb-3">
                     <label for="email">Email<span class="required">*</span></label>
                     <input type="email" id="email" formControlName="email" class="form-control"
-                        placeholder="Enter email" />
+                        placeholder="Enter email" [ngClass]="{'k-required':contactForm.get('email')?.invalid && isSubmit}"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required/>
                     <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid&& isSubmit"
                         class="text-danger">
                         Email is required and must be valid.

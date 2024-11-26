@@ -21,7 +21,6 @@ export class AddUpdateContactComponent {
     }
   }
   ngOnInit(): void {
-    debugger
 
     // this.getContactLst();
   }
@@ -38,7 +37,6 @@ export class AddUpdateContactComponent {
   }
   isSubmit: boolean = false;
   onSubmit() {
-    debugger
     if (this.contactForm.invalid) {
       this.isSubmit = true;
       this.toastr.error('Please fill required details !', 'Error');

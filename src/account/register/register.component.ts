@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ContactService } from 'src/Service/contact.service';
 
@@ -11,8 +12,8 @@ import { ContactService } from 'src/Service/contact.service';
 export class RegisterComponent {
   registerForm!: FormGroup;
 
-  
-  constructor(private fb: FormBuilder, private service: ContactService, private toastr: ToastrService) {
+
+  constructor(private fb: FormBuilder, private service: ContactService, private toastr: ToastrService, public router: Router) {
 
   }
   ngOnInit(): void {
@@ -23,23 +24,32 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       id: [0],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      confirmpassword: ['', Validators.required]
     });
   }
+  isSubmit: boolean = false;
   onSubmit() {
-    debugger
+    let rq = this.registerForm.getRawValue();
     if (this.registerForm.invalid) {
+      this.isSubmit = true;
       this.toastr.error('Please fill required details !', 'Error');
     }
-    let rq = this.registerForm.getRawValue();
-    this.service.register(rq).subscribe((res: any) => {
-      if (res.status == 1) {
-        sessionStorage.clear();
-        this.toastr.success(res.message, 'Success');
-      }
-      else {
-        this.toastr.error(res.message, 'Error');
-      }
-    })
+    else if (rq.password != rq.confirmpassword) {
+      this.toastr.info('Password and confirm password are not matching !', 'Info');
+    }
+    else {
+      this.isSubmit = false;
+      this.service.register(rq).subscribe((res: any) => {
+        if (res.status == 1) {
+          sessionStorage.clear();
+          this.router.navigate(['/account/login']);
+          this.toastr.success(res.message, 'Success');
+        }
+        else {
+          this.toastr.error(res.message, 'Error');
+        }
+      });
+    }
   }
 }

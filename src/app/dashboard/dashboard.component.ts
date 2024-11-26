@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from 'src/Service/contact.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,9 @@ export class DashboardComponent implements OnInit {
   sortDirection: 'asc' | 'desc' = 'asc';
   paginatedContacts: any = [];
   sortedData: any;
-  constructor(private fb: FormBuilder, private service: ContactService, private modalService: NgbModal, private toastr: ToastrService) {
+  constructor(private fb: FormBuilder, private service: ContactService, private modalService: NgbModal, private toastr: ToastrService,
+    public router: Router
+  ) {
 
   }
 
@@ -42,11 +45,11 @@ export class DashboardComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     });
+
   }
 
   getContactLst() {
     this.service.getContactData().subscribe((res: any) => {
-      debugger
       if (res) {
         this.contactData = res;
         this.sortedData = [...this.contactData];
@@ -62,7 +65,6 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteContact(id: number, contact: any) {
-    debugger
     if (window.confirm('Are you sure you want to submit this contact?')) {
       this.service.deleteContact(id).subscribe((res: any) => {
         if (res.status == 1) {
@@ -131,5 +133,9 @@ export class DashboardComponent implements OnInit {
     this.getContactLst();
     this.modalService.dismissAll();
   }
-
+  
+  logout() {
+    sessionStorage.clear();
+    this.router.navigate(['/account/login']);
+  }
 }

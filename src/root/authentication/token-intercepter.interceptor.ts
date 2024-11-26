@@ -14,10 +14,10 @@ export class TokenIntercepterInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let userData: any = sessionStorage.getItem('userData');
     let user = JSON.parse(userData);
-    if (user && user.authToken) {
+    if (user && user.accessToken) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${user.authToken}`
+          Authorization: `Bearer ${user.accessToken}`
         }
       });
     }

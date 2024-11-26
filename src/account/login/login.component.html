@@ -3,12 +3,13 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <h2>Login in</h2>
     <div class="inputBox">
-      <input id="email" formControlName="email" type="text" required>
-      <span>Username</span>
+      <input id="email" formControlName="email" type="text" [ngClass]="{'k-required':loginForm.get('email')?.invalid && isSubmit}"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+      <span>Email</span>
       <i></i>
     </div>
     <div class="inputBox">
-      <input type="password" id="password" formControlName="password" required>
+      <input type="password" id="password" formControlName="password" required [ngClass]="{'k-required':loginForm.get('password')?.invalid && isSubmit}">
       <span>Password</span>
       <i></i>
     </div>

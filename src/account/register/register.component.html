@@ -1,21 +1,44 @@
 <div class="box">
     <span class="borderLine"></span>
-    <form action="">
-        <h2>Sign in</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <h2>Sign up</h2>
         <div class="inputBox">
-            <input type="text" required>
+            <input type="text" id="email" formControlName="email" required
+                [ngClass]="{'k-required':registerForm.get('email')?.invalid && isSubmit}"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
             <span>Email</span>
             <i></i>
+            <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid && isSubmit"
+                class="text-danger">
+                Email is required and must be valid.
+            </div>
+            <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-danger">
+                Email is required.
+            </div>
         </div>
         <div class="inputBox">
-            <input type="password" required>
+            <input type="password" required id="email" formControlName="password"
+                [ngClass]="{'k-required':registerForm.get('password')?.invalid && isSubmit}">
             <span>Password</span>
             <i></i>
+            <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid"
+                class="text-danger">
+                password is required.
+            </div>
         </div>
         <div class="inputBox">
-            <input type="password" required>
+            <input type="password" required formControlName="confirmpassword"
+                [ngClass]="{'k-required':registerForm.get('confirmpassword')?.invalid && isSubmit}">
             <span>Confirm Password</span>
             <i></i>
+            <div *ngIf="!registerForm.get('confirmpassword')?.invalid&&registerForm.get('confirmpassword')?.touched && registerForm.get('confirmpassword')?.value != registerForm.get('password')?.value && isSubmit"
+                class="text-danger">
+                Password and confirm password are not matching.
+            </div>
+            <div *ngIf="!registerForm.get('confirmpassword')?.value != registerForm.get('password')?.value&&registerForm.get('confirmpassword')?.touched && registerForm.get('confirmpassword')?.invalid"
+                class="text-danger">
+                Confirm password is required.
+            </div>
         </div>
         <div class="links">
             <a class="link" routerLink="/account/login">Already have account?</a>
