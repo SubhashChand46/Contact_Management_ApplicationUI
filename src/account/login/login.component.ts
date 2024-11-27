@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   username: string = "";
   password: string = "";
+  isSubmit: boolean = false;
   constructor(private fb: FormBuilder, private service: ContactService, private toastr: ToastrService, public router: Router) {
 
   }
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
   }
-  isSubmit: boolean = false;
+
   onSubmit() {
     if (this.loginForm.invalid) {
       this.isSubmit = true;

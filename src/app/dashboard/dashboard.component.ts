@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     });
-
+   
   }
 
   getContactLst() {
@@ -133,7 +133,7 @@ export class DashboardComponent implements OnInit {
     this.getContactLst();
     this.modalService.dismissAll();
   }
-  
+
   logout() {
     sessionStorage.clear();
     this.router.navigate(['/account/login']);

@@ -46,6 +46,9 @@ export class RegisterComponent {
           this.router.navigate(['/account/login']);
           this.toastr.success(res.message, 'Success');
         }
+        else if (res.status == 0) {
+          this.toastr.info(res.message, 'Info');
+        }
         else {
           this.toastr.error(res.message, 'Error');
         }
