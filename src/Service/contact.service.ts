@@ -8,24 +8,24 @@ import { Observable } from 'rxjs';
 export class ContactService {
 
   constructor(@Inject(HttpClient) public http: HttpClient) { }
-  url: any = "https://localhost:44333/api/";
+  url: any = "https://localhost:7135/api/";
 
   getContactData(): Observable<any> {
-    return this.http.get<any>(`https://localhost:44333/api/Contacts/GetContacts`)
+    return this.http.get<any>(this.url + `api/Contacts/GetContacts`)
   }
   addUpdateContact(data: any): Observable<any> {
-    return this.http.post<any>(`https://localhost:44333/api/Contacts/AddUpdateContact`, data)
+    return this.http.post<any>(this.url + `api/Contacts/AddUpdateContact`, data)
   }
   deleteContact(id: any): Observable<any> {
-    return this.http.delete<any>(`https://localhost:44333/api/Contacts/DeleteContact?id=` + id);
+    return this.http.delete<any>(this.url + `api/Contacts/DeleteContact?id=` + id);
   }
 
   loginUser(data: any): Observable<any> {
-    return this.http.post<any>(`https://localhost:44333/api/Account/Login`, data);
+    return this.http.post<any>(this.url + `api/Account/Login`, data);
   }
 
   register(data: any): Observable<any> {
-    return this.http.post<any>(`https://localhost:44333/api/Account/Register`, data);
+    return this.http.post<any>(this.url + `api/Account/Register`, data);
   }
-  
+
 }

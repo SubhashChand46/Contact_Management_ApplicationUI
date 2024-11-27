@@ -4,8 +4,7 @@
         <h2>Sign up</h2>
         <div class="inputBox">
             <input type="text" id="email" formControlName="email" required
-                [ngClass]="{'k-required':registerForm.get('email')?.invalid && isSubmit}"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                [ngClass]="{'k-required':registerForm.get('email')?.invalid && isSubmit}">
             <span>Email</span>
             <i></i>
             <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid && isSubmit"
