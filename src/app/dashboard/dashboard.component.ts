@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     });
-   
+
   }
 
   getContactLst() {
@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteContact(id: number, contact: any) {
-    if (window.confirm('Are you sure you want to submit this contact?')) {
+    if (window.confirm('Are you sure you want to delete this contact?')) {
       this.service.deleteContact(id).subscribe((res: any) => {
         if (res.status == 1) {
           this.getContactLst();
